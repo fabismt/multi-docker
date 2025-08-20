@@ -13,10 +13,10 @@ jobs:
       - run: docker build -t fabisdocker/react-test-up -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true fabisdocker/react-test-up npm test
 
-      - run: docker build -t fabisdocker/multi-client-up ./client
-      - run: docker build -t fabisdocker/multi-nginx-up ./nginx
-      - run: docker build -t fabisdocker/multi-server-up ./server
-      - run: docker build -t fabisdocker/multi-worker-up ./worker
+      - run: docker build -t fabisdocker/multi-client-up ./client -f ./client/Dockerfile.dev
+      - run: docker build -t fabisdocker/multi-nginx-up ./nginx -f ./client/Dockerfile.dev
+      - run: docker build -t fabisdocker/multi-server-up ./server -f ./client/Dockerfile.dev
+      - run: docker build -t fabisdocker/multi-worker-up ./worker -f ./client/Dockerfile.dev
 
       - run: docker push fabisdocker/multi-client-up
       - run: docker push fabisdocker/multi-nginx-up
